@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>743958310174-kcoj31d6vcfpu9k7qk925pumb98d9a0v.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.743958310174-kcoj31d6vcfpu9k7qk925pumb98d9a0v</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAOYGsFgxA2NsZ9RekRAE0YptC4Lmn_nP8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>743958310174</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>takata.UIProgrammatically</string>
+	<key>PROJECT_ID</key>
+	<string>swiftpractice-817e0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>swiftpractice-817e0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:743958310174:ios:b2373dfe064d27c8</string>
+	<key>DATABASE_URL</key>
+	<string>https://swiftpractice-817e0.firebaseio.com</string>
+</dict>
+</plist>
