@@ -12,6 +12,8 @@ import Alamofire
 import RxSwift
 import RxCocoa
 
+//test
+
 class loginViewController: UIViewController {
 
     var messageSocket: MessageWebSocket?
