@@ -8,19 +8,15 @@
 
 import Foundation
 import Starscream
-
-protocol listenerProtocol {
-    func messageCome(message: String)
-}
+import RxSwift
 
 class MessageWebSocket:  WebSocketDelegate {
     
     let socket: WebSocket?
-    let delegates = MulticastDelegate<listenerProtocol>()
+    let messageSubject = PublishSubject<String>()
     
     static let shared = MessageWebSocket()
     
-//    var listernerContainer: [UIViewController] = []
     
     private init(){
         print("init sokcet")
@@ -44,8 +40,21 @@ class MessageWebSocket:  WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        delegates.invoke {
-            $0.messageCome(message: text)
+        messageSubject.onNext(text)
+        
+        let data = text.data(using: .utf8)!
+        do {
+            if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String,String>
+            {
+                print(jsonArray)
+                let insertobj:Chatdata = Chatdata(friendId: jsonArray["id"]!, content:  jsonArray["content"]!, date: Date(), persion: 1, myId: globalState.myId)
+                DatabaseService.inserttodatabase(data: insertobj)
+                
+            } else {
+                print("bad json")
+            }
+        } catch let error as NSError {
+            print(error)
         }
     }
     
@@ -53,20 +62,17 @@ class MessageWebSocket:  WebSocketDelegate {
         
     }
     
+    func sendmessage(message: String, friendId: String) {
+        
+        do{
+            let jsonData = try JSONSerialization.data(withJSONObject: ["content": message, "friendId": friendId, "myId": globalState.token ], options: .prettyPrinted)
+            MessageWebSocket.shared.socket?.write(data: jsonData)
+        } catch {
+            
+        }
+    }
+    
     
 }
 
-class MulticastDelegate <T> {
-    private var delegates = [T]()
-    
-    func addDelegate(delegate: T) {
-        delegates.append(delegate)
-    }
-    
-    func invoke(invocation: (T) -> ()) {
-        // Enumerating in reverse order prevents a race condition from happening when removing elements.
-        for delegate in delegates {
-            invocation(delegate)
-        }
-    }
-}
+

@@ -13,10 +13,15 @@ import RxSwift
 import RxCocoa
 
 //test
+//test2
 
 class loginViewController: UIViewController {
 
     var messageSocket: MessageWebSocket?
+    var name = Variable<String>("")
+    var password = Variable<String>("")
+    var isValid :Observable<Bool>?
+    var isvalid: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +33,25 @@ class loginViewController: UIViewController {
         login_input_container.addArrangedSubview(login_input_password)
         login_input_container.addArrangedSubview(login_button)
         
-        login_input_name.rx.text.subscribe(onNext: { value in print(value) } )
+        setFRP()
+        
+        
         
         setlayout()
+    }
+    
+    
+    func setFRP(){
+        
+        _ = login_input_name.rx.text.map({value in return value!}).bind(to: name )
+        _ = login_input_password.rx.text.map({value in return value!}).bind(to: password)
+        
+        isValid = Observable.combineLatest(name.asObservable(), password.asObservable(), resultSelector:  { (name, password)  in
+            return login_input_validation(name: name, password: password).success
+        })
+        
+        _ = isValid?.subscribe( onNext: { value in self.isvalid = value} )
+        
         
     }
     
@@ -82,13 +103,9 @@ class loginViewController: UIViewController {
 
     @objc func loginPushed(){
         
-        let name = login_input_name.text!
-        let password = login_input_password.text!
-        
-        
-        if login_input_validation(name: name, password: password).success {
+        if isvalid {
             
-            let postdata = ["name": name, "password": password]
+            let postdata = ["name": name.value, "password": password.value]
             
             let url = "http://localhost:8181/api/login/"
             guard let Url = URL(string: url) else { return }

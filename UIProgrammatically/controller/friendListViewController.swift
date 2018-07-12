@@ -13,27 +13,7 @@ import SwiftyJSON
 import Starscream
 import CoreData
 
-class FriendListviewController: UIViewController,UITableViewDelegate, UITableViewDataSource, friendModelDelegate, listenerProtocol {
-    
-    func messageCome(message: String) {
-        print("got some text: \(message)")
-        let data = message.data(using: .utf8)!
-        do {
-            if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String,String>
-            {
-                print(jsonArray)
-                let insertobj:Chatdata = Chatdata(friendId: jsonArray["id"]!, content:  jsonArray["content"]!, date: Date(), persion: 1, myId: globalState.myId)
-                DatabaseService.inserttodatabase(data: insertobj)
-
-//                chatviewcontrollerobject?.inserttotable(sentfriendId: jsonArray["id"]!, chatcontent: jsonArray["content"]!)
-            } else {
-                print("bad json")
-            }
-        } catch let error as NSError {
-            print(error)
-        }
-        
-    }
+class FriendListviewController: UIViewController,UITableViewDelegate, UITableViewDataSource, friendModelDelegate {
     
     var tappedfriend = ""
     var mytableview: UITableView?
@@ -57,8 +37,6 @@ class FriendListviewController: UIViewController,UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let messagewebsocket = MessageWebSocket.shared
-        messagewebsocket.delegates.addDelegate(delegate: self)
     
         view.backgroundColor = ColorHolder.background
         navigationItem.title = "friends"
@@ -77,6 +55,9 @@ class FriendListviewController: UIViewController,UITableViewDelegate, UITableVie
         friendsData.delegate = self
         
         requestServer.getstoredtalks()
+        
+        socket = MessageWebSocket.shared.socket
+        
         
         
         let rightbutton = UIButton()
@@ -331,15 +312,6 @@ class FriendListviewController: UIViewController,UITableViewDelegate, UITableVie
         modalbackground.removeFromSuperview()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        if UIDevice.current.orientation.isLandscape {
-            print("ee")
-        } else {
-            print("fed")
-        }
-        
-    }
     private func setupLayout(){
         
         let navbarheight = (navigationController?.navigationBar.frame.height)!

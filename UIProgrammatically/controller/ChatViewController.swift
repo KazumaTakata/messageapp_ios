@@ -12,23 +12,8 @@ import SwiftyJSON
 import CoreData
 import Starscream
 
-class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, listenerProtocol   {
+class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
-    func messageCome(message: String) {
-        let data = message.data(using: .utf8)!
-        do {
-            if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String,String>
-            {
-                print(jsonArray)
-                insertToTable(content: jsonArray["content"]!, person: 1)
-            } else {
-                print("bad json")
-            }
-        
-        } catch let error as NSError {
-            print(error)
-        }
-    }
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,13 +57,32 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         chattableview.delegate = self
         chattableview.backgroundColor = ColorHolder.background
         
-        let messagewebsocket = MessageWebSocket.shared
-        messagewebsocket.delegates.addDelegate(delegate: self)
-        
+        setListener()
         setlayout()
-        
         loadtalkdata()
     }
+    
+    func setListener(){
+        
+        let messagewebsocket = MessageWebSocket.shared
+        
+        _ = messagewebsocket.messageSubject.subscribe(onNext: { message in
+            print(message)
+            let data = message.data(using: .utf8)!
+            do {
+                if let jsonArray = try JSONSerialization.jsonObject(with: data, options : .allowFragments) as? Dictionary<String,String>
+            {
+                print(jsonArray)
+                self.insertToTable(content: jsonArray["content"]!, person: 1)
+                } else {
+                    print("bad json")
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        })
+    }
+    
     
     func loadtalkdata(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -137,24 +141,24 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         uibutton.translatesAutoresizingMaskIntoConstraints = false
         uibutton.setImage(#imageLiteral(resourceName: "addicon").withRenderingMode(UIImageRenderingMode.alwaysTemplate) , for: .normal)
         uibutton.tintColor = UIColor.white
-        uibutton.addTarget(self, action:#selector(handleRegister), for: .touchUpInside)
+        uibutton.addTarget(self, action:#selector(handlePush), for: .touchUpInside)
         return uibutton
     }()
     
-    @objc func handleRegister() {
+    @objc func handlePush() {
         
         let chatcontent = chatinputfield.text!
-        do{
-            let jsonData = try JSONSerialization.data(withJSONObject: ["content": chatcontent, "friendId": friendId, "myId": globalState.token ], options: .prettyPrinted)
-                MessageWebSocket.shared.socket?.write(data: jsonData)
-        } catch {
+        if (chatcontent != ""){
+            // to server
+            MessageWebSocket.shared.sendmessage(message: chatcontent, friendId: friendId)
             
+            let chatdata = Chatdata(friendId: self.friendId , content: chatcontent, date: Date() , persion: 0, myId: globalState.myId)
+            // to database
+            DatabaseService.inserttodatabase(data: chatdata)
+            
+            // to tableview
+            insertToTable(content: chatcontent, person: 0)
         }
-    
-        let chatdata = Chatdata(friendId: self.friendId , content: chatcontent, date: Date() , persion: 0, myId: globalState.myId)
-        DatabaseService.inserttodatabase(data: chatdata)
-        insertToTable(content: chatcontent, person: 0)
-        
     }
     
     private func insertToTable(content: String, person: Int){
