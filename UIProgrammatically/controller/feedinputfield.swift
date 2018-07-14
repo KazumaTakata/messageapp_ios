@@ -95,9 +95,7 @@ class  Feedinputcontroller: UIViewController, UIImagePickerControllerDelegate, U
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         choosenPhoto = chosenImage
-        let imageData = UIImagePNGRepresentation(choosenPhoto)!
         photochoosenlabel.text = "photo choosen"
-//        requestWith(imageData: imageData)
         dismiss(animated: true, completion: nil)
     }
     
@@ -118,7 +116,6 @@ class  Feedinputcontroller: UIViewController, UIImagePickerControllerDelegate, U
             if let data = imageData{
                 multipartFormData.append(data, withName: "image", fileName: "image.png", mimeType: "image/png")
             }
-            
         }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers) { (result) in
             switch result{
             case .success(let upload, _, _):

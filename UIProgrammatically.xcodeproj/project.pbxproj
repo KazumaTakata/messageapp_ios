@@ -22,6 +22,7 @@
 		26353B9A20E3D8B200DAE151 /* UIProgrammatically.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 26353B9820E3D8B200DAE151 /* UIProgrammatically.xcdatamodeld */; };
 		26353B9C20E3D94F00DAE151 /* coredataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26353B9B20E3D94F00DAE151 /* coredataViewController.swift */; };
 		2635E9BA20E4DCBC00A9B707 /* friendmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2635E9B920E4DCBC00A9B707 /* friendmodel.swift */; };
+		2647734720F6F64700C68F55 /* loginviewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2647734620F6F64700C68F55 /* loginviewmodel.swift */; };
 		2651D27920DE19F800EA04A3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2651D27820DE19F800EA04A3 /* ChatViewController.swift */; };
 		2651D27D20DF629B00EA04A3 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2651D27C20DF629B00EA04A3 /* loginViewController.swift */; };
 		266B1EFC20E66953005CF01E /* talklistcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266B1EFB20E66953005CF01E /* talklistcell.swift */; };
@@ -81,6 +82,7 @@
 		26353B9920E3D8B200DAE151 /* chatmodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = chatmodel.xcdatamodel; sourceTree = "<group>"; };
 		26353B9B20E3D94F00DAE151 /* coredataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coredataViewController.swift; sourceTree = "<group>"; };
 		2635E9B920E4DCBC00A9B707 /* friendmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = friendmodel.swift; sourceTree = "<group>"; };
+		2647734620F6F64700C68F55 /* loginviewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginviewmodel.swift; sourceTree = "<group>"; };
 		2651D27820DE19F800EA04A3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		2651D27C20DF629B00EA04A3 /* loginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		266B1EFB20E66953005CF01E /* talklistcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = talklistcell.swift; sourceTree = "<group>"; };
@@ -221,6 +223,14 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		2647734520F6F63200C68F55 /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				2647734620F6F64700C68F55 /* loginviewmodel.swift */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
 		266CE05D20E4FA0100CD6044 /* tablecell */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +275,7 @@
 		26F59E6720DB9D9000FCFEE9 /* UIProgrammatically */ = {
 			isa = PBXGroup;
 			children = (
+				2647734520F6F63200C68F55 /* viewmodel */,
 				26C9877920F46D4200405780 /* extension */,
 				263019CB20F2E01C00DB5901 /* service */,
 				263019C820F2DD1A00DB5901 /* res */,
@@ -660,6 +671,7 @@
 				26353B5620E10E8100DAE151 /* tabbarController.swift in Sources */,
 				263019D120F2FF4C00DB5901 /* requestServer.swift in Sources */,
 				26353B5A20E15DE400DAE151 /* globalstate.swift in Sources */,
+				2647734720F6F64700C68F55 /* loginviewmodel.swift in Sources */,
 				263019CF20F2F64800DB5901 /* databaseservice.swift in Sources */,
 				2651D27920DE19F800EA04A3 /* ChatViewController.swift in Sources */,
 			);

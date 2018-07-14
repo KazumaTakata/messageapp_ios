@@ -46,15 +46,10 @@ class addfriendViewController: UIViewController {
         if friendname != "" {
             
             if (friendname != globalState.myname){
-                let url = "http://localhost:8181/api/find/\(friendname)"
-                guard let gitUrl = URL(string: url) else { return }
-                var request = URLRequest(url: gitUrl)
-                request.setValue(globalState.token, forHTTPHeaderField: "x-access-token")
-                
-                URLSession.shared.dataTask(with: request) { (data, response
-                    , error) in
-                    do {
-                        let json = try JSON(data: data!)
+
+                requestServer.getRequest(url: "find/\(friendname)", completion: { json in
+                    
+                    if ( json["id"].string != nil ){
                         DispatchQueue.main.async {
                             let imgurl = json["photourl"].string!
                             let url = URL(string: imgurl)
@@ -63,10 +58,14 @@ class addfriendViewController: UIViewController {
                             self.resultname.text = json["name"].string!
                             self.friendId = json["id"].string!
                         }
-                    } catch let err {
-                        print("Err", err)
+                    } else {
+                        let alert = showalert(title: "warning", message: "No Friend Found")
+                        DispatchQueue.main.async {
+                            self.present(alert, animated: true, completion: nil)
+                        }
                     }
-                    }.resume()
+                    
+                })
             } else {
                 print("this is your name")
                 let alert = showalert(title: "warning", message: "This is your name")
@@ -178,6 +177,11 @@ class addfriendViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.present(alert , animated: true, completion: nil)
                 }
+            }
+        } else {
+            let alert = showalert(title: "warning", message: "No friend is Choosen")
+            DispatchQueue.main.async {
+                self.present(alert , animated: true, completion: nil)
             }
         }
     }

@@ -13,7 +13,6 @@ class requestServer {
     
     static public func getRequest(url : String, completion: @escaping (JSON)->()) {
         
-//        let urlstring = "http://localhost:8181/api/storedtalks"
         let urlstring = "http://localhost:8181/api/\(url)"
         guard let Url = URL(string: urlstring) else { return }
         var request = URLRequest(url: Url)

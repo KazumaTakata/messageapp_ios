@@ -27,9 +27,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "chatcell", for: indexPath as IndexPath) as! chatcell
         cell.messageView.text = currentchatdata[indexPath.row].content
         
-       
         cell.backgroundColor = ColorHolder.background
-
         if currentchatdata[indexPath.row].person == 0 {
            cell.rightconstraints?.isActive = true
            cell.leftconstraints?.isActive = false

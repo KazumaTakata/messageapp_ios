@@ -18,41 +18,29 @@ import RxCocoa
 class loginViewController: UIViewController {
 
     var messageSocket: MessageWebSocket?
-    var name = Variable<String>("")
-    var password = Variable<String>("")
-    var isValid :Observable<Bool>?
-    var isvalid: Bool = false
+    var inputIsValid: Bool = false
+
+    var viewmodel = loginviewmodel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorHolder.background
         view.addSubview(login_input_container)
-//        view.addSubview(title_label)
+
         login_input_container.addArrangedSubview(title_label)
         login_input_container.addArrangedSubview(login_input_name)
         login_input_container.addArrangedSubview(login_input_password)
         login_input_container.addArrangedSubview(login_button)
         
-        setFRP()
-        
-        
-        
+        bindToView()
+    
         setlayout()
     }
     
-    
-    func setFRP(){
-        
-        _ = login_input_name.rx.text.map({value in return value!}).bind(to: name )
-        _ = login_input_password.rx.text.map({value in return value!}).bind(to: password)
-        
-        isValid = Observable.combineLatest(name.asObservable(), password.asObservable(), resultSelector:  { (name, password)  in
-            return login_input_validation(name: name, password: password).success
-        })
-        
-        _ = isValid?.subscribe( onNext: { value in self.isvalid = value} )
-        
-        
+    func bindToView(){
+        _ = login_input_name.rx.text.map({value in value!}).bind(to: viewmodel.name )
+        _ = login_input_password.rx.text.map({value in value!}).bind(to: viewmodel.password)
+        _ = viewmodel.isValid.subscribe(onNext: { isvalid in self.inputIsValid = isvalid })
     }
     
     let login_input_container: UIStackView = {
@@ -103,9 +91,9 @@ class loginViewController: UIViewController {
 
     @objc func loginPushed(){
         
-        if isvalid {
+        if inputIsValid {
             
-            let postdata = ["name": name.value, "password": password.value]
+            let postdata = ["name": viewmodel.name.value, "password": viewmodel.password.value ]
             
             let url = "http://localhost:8181/api/login/"
             guard let Url = URL(string: url) else { return }

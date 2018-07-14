@@ -217,22 +217,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "UIProgrammatically/model/friendmodel.swift"
-            timestampString = "552970288.078483"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/ViewController.swift"
             timestampString = "552296671.398901"
             startingColumnNumber = "9223372036854775807"
@@ -257,22 +241,6 @@
             endingLineNumber = "36"
             landmarkName = "websocketDidReceiveMessage(socket:text:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "UIProgrammatically/model/friendmodel.swift"
-            timestampString = "552970288.078814"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "unknown"
-            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -538,7 +506,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/model/feedmodel.swift"
-            timestampString = "552970288.079241"
+            timestampString = "553063426.938585"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "38"
@@ -650,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/controller/addfriendViewController.swift"
-            timestampString = "553045887.901633"
+            timestampString = "553224534.830315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "addfriend()"
             landmarkType = "7">
          </BreakpointContent>
@@ -666,7 +634,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/controller/addfriendViewController.swift"
-            timestampString = "553045887.901911"
+            timestampString = "553224534.830602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -714,7 +682,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/controller/homecontroller.swift"
-            timestampString = "552970288.07994"
+            timestampString = "553224534.83081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -730,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/controller/friendListViewController.swift"
-            timestampString = "553050000.6503789"
+            timestampString = "553224534.8308491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
             landmarkName = "setupLayout()"
             landmarkType = "7">
          </BreakpointContent>
@@ -746,7 +714,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/service/messagewebsocket.swift"
-            timestampString = "553050000.650431"
+            timestampString = "553224534.830893"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
@@ -762,7 +730,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/service/messagewebsocket.swift"
-            timestampString = "553050000.650473"
+            timestampString = "553224534.8309309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -778,7 +746,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/service/messagewebsocket.swift"
-            timestampString = "553050000.650509"
+            timestampString = "553224534.830966"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -794,7 +762,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/service/messagewebsocket.swift"
-            timestampString = "553050000.650545"
+            timestampString = "553224534.831002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
@@ -810,7 +778,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/service/messagewebsocket.swift"
-            timestampString = "553050000.650579"
+            timestampString = "553224534.831036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -826,7 +794,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/service/messagewebsocket.swift"
-            timestampString = "553050000.650612"
+            timestampString = "553224534.831069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -842,7 +810,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/service/messagewebsocket.swift"
-            timestampString = "553050000.6506439"
+            timestampString = "553224534.8311009"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -858,12 +826,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UIProgrammatically/service/messagewebsocket.swift"
-            timestampString = "553050000.650676"
+            timestampString = "553224534.8311321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
             landmarkName = "websocketDidReceiveMessage(socket:text:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UIProgrammatically/controller/addfriendViewController.swift"
+            timestampString = "553224534.831165"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "senduserId()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "UIProgrammatically/service/requestServer.swift"
+            timestampString = "553224534.831338"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "getRequest(url:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

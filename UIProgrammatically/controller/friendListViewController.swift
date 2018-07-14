@@ -107,19 +107,10 @@ class FriendListviewController: UIViewController,UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath as IndexPath) as! friendcell
-        cell.messageView.text = friendsData.friendData[indexPath.row].namest
-        let imgurl = friendsData.friendData[indexPath.row].picurl
-        let url = URL(string: imgurl)
-        let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-        cell.mainImageview.image  = UIImage(data: data!)
+        cell.messageView.text = friendsData.friendData[indexPath.row].name
+        cell.mainImageview.image  = friendsData.friendData[indexPath.row].pic
         
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
-        }
     }
     
     
@@ -144,25 +135,16 @@ class FriendListviewController: UIViewController,UITableViewDelegate, UITableVie
         modalview.centerXAnchor.constraint(equalTo: modalbackground.centerXAnchor).isActive = true
         modalview.centerYAnchor.constraint(equalTo: modalbackground.centerYAnchor).isActive = true
         
-       
-        let backurl = URL(string: friendsData.friendData[index].backgroundurl)
-        let backgroundimg = try? Data(contentsOf: backurl!)
-        homeimg.image = UIImage(data: backgroundimg!)
+        
         modalview.addSubview(homeimg)
         homeimg.topAnchor.constraint(equalTo: modalview.topAnchor).isActive = true
         homeimg.rightAnchor.constraint(equalTo: modalview.rightAnchor).isActive = true
         homeimg.leftAnchor.constraint(equalTo: modalview.leftAnchor).isActive = true
         homeimg.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
-        let tapimg = UITapGestureRecognizer(target: self, action: #selector(handletapimg))
-        tapimg.numberOfTapsRequired = 1
-        tapimg.numberOfTouchesRequired = 1
-        homeimg.addGestureRecognizer(tapimg)
-        
-        
-        let picurl = URL(string: friendsData.friendData[index].picurl)
-        let picimg = try? Data(contentsOf: picurl!)
-        modalphoto.image = UIImage(data: picimg!)
+
+        homeimg.image = friendsData.friendData[index].backgroundpic
+        modalphoto.image = friendsData.friendData[index].pic
         
         modalview.addSubview(modalphoto)
         modalphoto.topAnchor.constraint(equalTo: modalview.topAnchor, constant: 75).isActive = true
@@ -262,8 +244,6 @@ class FriendListviewController: UIViewController,UITableViewDelegate, UITableVie
         uibutton.setTitleColor(ColorHolder.textcolor2, for: .normal)
         uibutton.backgroundColor = .white
         uibutton.addTarget(self, action: #selector(gotoHome), for: .touchUpInside)
-//        uibutton.layer.borderWidth = 1
-//        uibutton.layer.borderColor = ColorHolder.textcolor2.cgColor
     
         return uibutton
     }()
@@ -304,9 +284,7 @@ class FriendListviewController: UIViewController,UITableViewDelegate, UITableVie
         navigationController?.pushViewController(homeviewcontrollerobject, animated: true)
     }
     
-    @objc func handletapimg(){
-        print("img tapped")
-    }
+   
     
     @objc func handletap(){
         modalbackground.removeFromSuperview()

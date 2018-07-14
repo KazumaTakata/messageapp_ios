@@ -8,12 +8,13 @@
 
 import Foundation
 import SwiftyJSON
+import UIKit
 
-struct userstruct: Codable {
-    var namest: String
-    var picurl: String
+struct userstruct{
+    var name: String
+    var pic: UIImage
     var userId: String
-    var backgroundurl: String
+    var backgroundpic: UIImage
 }
 
 
@@ -29,40 +30,34 @@ class friendModel {
             
             for index in 0...json.count - 1 {
                 let name = json[index]["name"].string
-                let url = json[index]["photourl"].string
+                let photourl = json[index]["photourl"].string
                 let Id = json[index]["id"].string
                 let backurl = json[index]["backgroundurl"].string
                 
-                globalState.idtonameandphotourl[Id!] = ["name": name, "url": url, "backgroundurl": backurl] as? [String : String]
+                globalState.idtonameandphotourl[Id!] = ["name": name, "url": photourl, "backgroundurl": backurl] as? [String : String]
                 
-                let us = userstruct(namest: name!, picurl: url!, userId: Id!, backgroundurl: backurl! )
+                let profilephoto = try? Data(contentsOf: URL(string: photourl!)!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                let backgroundphoto = try? Data(contentsOf: URL(string: backurl!)!)
+                
+                
+                let us = userstruct(name: name!, pic: UIImage(data:profilephoto!)! , userId: Id!, backgroundpic: UIImage(data:backgroundphoto!)! )
                 friendData.append(us)
             }
-        
         }
-        
-    
     }
     
     func getfriendsdata(){
         if friendData.count != 0 {
             friendData = [userstruct]()
         }
-        let urlstring = "http://localhost:8181/api/friendslist"
-        guard let Url = URL(string: urlstring) else { return }
-        var request = URLRequest(url: Url)
-        request.setValue(globalState.token, forHTTPHeaderField: "x-access-token")
         
-        URLSession.shared.dataTask(with: request) { (data, response
-            , error) in
-            do {
-                let json = try JSON(data: data!)
-                self.addToUserdata(json: json)
-                self.delegate?.newfriends?()
-            } catch let err {
-                print("Err", err)
-            }
-            }.resume()
+        requestServer.getRequest(url: "friendslist", completion: { json in
+            self.addToUserdata(json: json)
+            self.delegate?.newfriends?()
+            
+        })
+        
+        
     }
     
     
